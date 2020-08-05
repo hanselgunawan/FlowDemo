@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FlowDemo</string>
+    <string name="launch_kotlin_flow_string">Launch Kotlin Flow</string>
 </resources>
