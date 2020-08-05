@@ -6,6 +6,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,6 +72,15 @@ class MainActivity : AppCompatActivity() {
 
         flowStr = intFlow.zip(strFlow) {intValue, stringValue ->
             "$intValue$stringValue"
+
+        // ========== 6. Retry Operator ==========
+        }.retryWhen { cause, attempt ->
+            if (cause is IOException && attempt <= 3) {
+                delay(2000)
+                return@retryWhen true
+            } else {
+                return@retryWhen false
+            }
         }.flowOn(Dispatchers.Default)
 
 
