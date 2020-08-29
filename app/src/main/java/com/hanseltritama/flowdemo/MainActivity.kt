@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setupClicks()
     }
 
-    @ExperimentalCoroutinesApi
     fun setupFlow() {
         flow = flowOf(1,2,3,4,5,6).onEach {
             delay(400)
