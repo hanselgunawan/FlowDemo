@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setupClicks()
     }
 
-    fun setupFlow() {
+    private fun setupFlow() {
         flow = flowOf(1,2,3,4,5,6).onEach {
             delay(400)
         }.flowOn(Dispatchers.IO)
