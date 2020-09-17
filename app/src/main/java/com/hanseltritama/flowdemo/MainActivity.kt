@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity() {
         val strFlow = flowOf("A","B","C")
 
         flowStr = intFlow.zip(strFlow) {intValue, stringValue ->
-            "$intValue$stringValue"
+            if (intValue == 2) {
+                throw IOException("Failed")
+            } else {
+                "$intValue$stringValue"
+            }
         }.retryWhen { cause, attempt ->
             if (cause is IOException && attempt <= 3) {
                 delay(2000)
